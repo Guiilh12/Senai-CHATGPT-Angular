@@ -1,0 +1,53 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Funnel+Sans:ital,wght@0,300..800;1,300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+.titulo{
+    font-weight: 400;
+    font-size: 76;
+    background: fixed;
+    background-position: right;
+    margin-bottom: 16px;
+}
+
+.robo-image{ 
+    width: 50vw; ;/* 50% da largura do monitor*/
+    height: 100vh; /*100% da altura do monitor */
+    background-image: url("/imgs/Rectangle 1.png"); /*imagem de fundo*/
+    background-size: cover; /*imagem de fundo cobre todo o container*/
+}
+.page-container{
+    display: flex;/* um ao lado do outro*/
+}
+.login{ 
+    
+    width: 50vw;
+    height: 100vh;
+    /*kit sobrevivencia de centralizacao*/
+    display: flex;/*ativar o flex*/
+    flex-direction: column;/*muda o flex para coluna*/
+    align-items: center;/*centralizar horizontamente*/
+    justify-content: center;/*centralizar verticalmente*/ 
+}
+
+
+.inpt{
+    padding:18px;/* margin interna */
+    margin-bottom: 16px;
+    background-color: #f7f9fb;
+    width: 377px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
+.botao{
+    cursor: pointer;
+    padding: 20px;
+    margin-bottom: 16px;
+    background-color: #1c1c1c;
+    color: #fff;
+    border-radius: 12px;
+    width: 377px;
+    height: 56px;
+    border:none
+
+}
