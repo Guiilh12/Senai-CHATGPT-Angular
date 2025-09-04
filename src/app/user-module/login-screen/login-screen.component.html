@@ -4,17 +4,17 @@
          <!-- <img src="asset/img/Rectangle 1.png" alt="logo senai-gpt"> -->
       </div>
 
-      <div class="login">
+      <div class="login"[formGroup]= "loginform">
 
          <img src="imgs/Chat.png" alt="logo senai-gpt">
         <h1 class="titulo">Login</h1>
 
-        <input class="inpt" type="Email:" placeholder="insira o seu Email">
-         <input class="inpt" type="Senha:" placeholder="insira a sua Senha">
+        <input class="inpt" type="Email:" placeholder="insira o seu Email" formControlname = "email">
+         <input class="inpt" type="password" placeholder="insira a sua password">
 
-         <button class="botao">entre</button>
+         <button class="btn" (click) = "onLoginclik">entre</button>
     
       </div>
    </main>
-   <app-root></app-root>
+  
 
