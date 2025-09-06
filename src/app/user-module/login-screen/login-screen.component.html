@@ -4,16 +4,23 @@
          <!-- <img src="asset/img/Rectangle 1.png" alt="logo senai-gpt"> -->
       </div>
 
-      <div class="login"[formGroup]= "loginform">
+      <div class="login"[formGroup]= "loginForm">
 
          <img src="imgs/Chat.png" alt="logo senai-gpt">
         <h1 class="titulo">Login</h1>
 
-        <input class="inpt" type="Email:" placeholder="insira o seu Email" formControlname = "email">
-         <input class="inpt" type="password" placeholder="insira a sua password">
+        <input class="inpt" type="Email:" placeholder="insira o seu Email" formControlName = "email">
+        <span class="error-message">{{emailErrorMessage}}</span>
 
-         <button class="btn" (click) = "onLoginclik">entre</button>
-    
+         <input class="inpt" type="password" placeholder="insira a sua password" formControlName = "password">
+         
+          <span class="error-message">{{senhaErrorMessage1}}</span>
+
+         <button class="botao" (click) = "onLoginclik()">entre</button>
+
+             <span class = "acesso">{{loginComSucesso}}</span>
+
+              <span class = "falha">{{loginComFalha}}</span>
       </div>
    </main>
   

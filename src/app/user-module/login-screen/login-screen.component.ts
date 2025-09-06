@@ -9,23 +9,83 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class LoginScreenComponent {
 
-loginform:FormGroup; 
+loginForm: FormGroup; 
+
+emailErrorMessage:string;
+
+senhaErrorMessage1:string;
+
+loginComSucesso:string;
+
+loginComFalha:string
+
 
  //qundo a tela iniciar.//
 
 constructor(private fb: FormBuilder){
+   //qundo a tela iniciar.//
+
+
 //iniciar furmulario 
 //criar o campo obrigatorio de email
 //criar o campo obrigatorio de senha
-  this.loginform = this.fb.group({
+  this.loginForm = this.fb.group({
     email:["", [Validators.required]],
     password:["", [Validators.required]]
   })
-}
-onLoginclik(){
-  alert("Botao de login clicado.");
+  //inicia co uma string vazia
+  this.emailErrorMessage ="";
 
-  console.log("Email", this.loginform.value.email)
-  console.log("Password", this.loginform.value.password)
+  this.senhaErrorMessage1 ="",
+
+  this.loginComSucesso ="",
+
+  this.loginComFalha =""
+}
+ async onLoginclik(){
+  // alert("Botao de login clicado.");
+
+  console.log("Email", this.loginForm.value.email);
+
+  console.log("Password", this.loginForm.value.password);
+  //method REST
+  //POST criar
+  // GET Buscar
+  //PUT Atualizar
+  //DELETE apagar
+if (this.loginForm.value.email == ""){
+  // alert("preencha o email")
+  this.emailErrorMessage =" O campo de e-mail e obrigatorio.";
+  return;
+}
+if (this.loginForm.value.password == ""){
+  // alert("preencha o senha")
+  this.senhaErrorMessage1 = "O campo de senha e obrigatorio"
+  return;
+}
+
+
+  let response = await fetch("https://senai-gpt-api.azurewebsites.net/login", {
+    method:"POSt",
+    headers: {
+      "Content-Type" : "application/json"
+    },
+    body:JSON.stringify({
+    email: this.loginForm.value.email,
+    password: this.loginForm.value.password
+    })
+  });
+
+  
+  
+if(response.status ==200 && response.status <=299){
+//alert("acesso permitido")
+this.loginComSucesso ="Login efetuado com sucesso!"
+this.loginComFalha=""
+} else {
+//  alert("Email ou Senha errada!")
+this.loginComFalha ="credenciais incorretas! "
+this.loginComSucesso=""
+}
 }
  }
