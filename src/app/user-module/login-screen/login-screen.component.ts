@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Token } from '@angular/compiler';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -8,7 +9,6 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
   styleUrl: './login-screen.component.css'
 })
 export class LoginScreenComponent {
-
 loginForm: FormGroup; 
 
 emailErrorMessage:string;
@@ -22,7 +22,7 @@ loginComFalha:string
 
  //qundo a tela iniciar.//
 
-constructor(private fb: FormBuilder){
+constructor(private fb: FormBuilder, private cd:ChangeDetectorRef){
    //qundo a tela iniciar.//
 
 
@@ -81,11 +81,20 @@ if (this.loginForm.value.password == ""){
 if(response.status ==200 && response.status <=299){
 //alert("acesso permitido")
 this.loginComSucesso ="Login efetuado com sucesso!"
-this.loginComFalha=""
+let json = await response.json();
+console.log("JSON", json)
+let meutoken = json.accessToken;
+let userld =json.user.id;
+
+localStorage.setItem ("meutoken", meutoken);
+localStorage.setItem("userld", userld);
+window.location.href = "chat";
+
 } else {
 //  alert("Email ou Senha errada!")
 this.loginComFalha ="credenciais incorretas! "
-this.loginComSucesso=""
-}
+
 }
  }
+}
+

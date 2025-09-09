@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginScreenComponent } from './login-screen.component';
+import { ChatScreenComponent } from '../../chat-screen/chat-screen.component';
 
 describe('LoginScreenComponent', () => {
   let component: LoginScreenComponent;
@@ -21,3 +22,6 @@ describe('LoginScreenComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+
+ 
