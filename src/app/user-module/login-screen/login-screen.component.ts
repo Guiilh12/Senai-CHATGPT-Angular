@@ -83,11 +83,11 @@ if(response.status ==200 && response.status <=299){
 this.loginComSucesso ="Login efetuado com sucesso!"
 let json = await response.json();
 console.log("JSON", json)
-let meutoken = json.accessToken;
-let userld =json.user.id;
+let meuToken = json.accessToken;
+let userId =json.user.id;
 
-localStorage.setItem ("meutoken", meutoken);
-localStorage.setItem("userld", userld);
+localStorage.setItem ("meuToken", meuToken);
+localStorage.setItem("userId", userId);
 window.location.href = "chat";
 
 } else {
