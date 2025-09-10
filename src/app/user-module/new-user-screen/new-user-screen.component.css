@@ -1,0 +1,52 @@
+.container{
+    display: flex;
+}
+
+.imagem{
+    width: 50vw;
+    background-color: blue;
+   
+}
+
+.cadastro{
+
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.cadastro img{
+    width: 20vw;
+    height: 10vh;
+    margin-top: 40px;
+}
+
+.cadastro h1{
+    font-size: 70px;
+}
+
+.botao{
+    cursor: pointer;
+    padding: 20px;
+    margin-bottom: 16px;
+    background-color: #1c1c1c;
+    color: #fff;
+    border-radius: 12px;
+    width: 377px;
+    height: 56px;
+    border:none
+
+}
+
+.inpt{
+    padding:18px;/* margin interna */
+    margin-bottom: 16px;
+    background-color: #f7f9fb;
+    width: 377px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+}
