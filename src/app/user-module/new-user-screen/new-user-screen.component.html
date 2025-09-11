@@ -8,14 +8,16 @@
         <img src="imgs/Chat.png" alt="logo senai-gpt">
        <h1 class="titulo">Novo Usuário</h1>
 
-       <input class="inpt" type="nome" placeholder="Nome" formControlName = "nome">
+       <input class="inpt" type="nome" placeholder="nome" formControlName = "nome">
 
        <input class="inpt" type="email" placeholder="email" formControlName = "email">
 
-       <input class="inpt" type="password" placeholder="insira a sua password" formControlName = "password">
+       <input class="inpt" type="senha" placeholder="insira uma nova senha" formControlName = "senha">
 
+       <input class="inpt" type="senha" placeholder="confimer a senha" formControlName = " nova-senha">
 
-       <button class="botao">entre</button>
+       <button class="botao" (click) = "onLoginclik()">entre</button>
+
 
       
 
