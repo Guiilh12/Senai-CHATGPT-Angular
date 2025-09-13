@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-user-screen',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './new-user-screen.component.html',
   styleUrl: './new-user-screen.component.css'
 })
@@ -16,6 +16,8 @@ insiraEmail:string;
 
 insiraSenha:string;
 
+senhaEfetuada:string;
+
 cadastrComsucesso:string;
 
 cadastroComFalha :string;
@@ -26,7 +28,8 @@ cadastroComFalha :string;
 
       nome: ["",[ Validators.required]],
       email:["", [Validators.required]],
-      Senha:["", [Validators.required]]
+      senha:["", [Validators.required]],
+      comfirmacao:["", [Validators.required]]
     })
   
     this.insiraNome ="",
@@ -34,6 +37,8 @@ cadastroComFalha :string;
     this.insiraEmail ="",
   
     this.insiraSenha ="",
+
+    this.senhaEfetuada ="",
     
     this.cadastrComsucesso =""
 
@@ -41,10 +46,15 @@ cadastroComFalha :string;
   
   }
 async onLoginclik(){
+  const token = localStorage.getItem("meuToken");
 
-  console.log("Nome", this.cadastroForm.value.Nome)
-  console.log("Email", this.cadastroForm.value.Email);
-  console.log("Password", this.cadastroForm.value.Senha);
+  // console.log("Nome", this.cadastroForm.value.Nome);
+
+  // console.log("Email", this.cadastroForm.value.Email);
+
+  // console.log("senha", this.cadastroForm.value.Senha);
+
+  // console.log("comfirmacao", this.senhaEfetuada.value.comfirmacao);
   
 if (this.cadastroForm.value.nome ==""){
   // alert("preencha o email")
@@ -57,38 +67,39 @@ if (this.cadastroForm.value.email == ""){
   return;
 }
 
-if(this.cadastroForm.value.senha == "")
+if(this.cadastroForm.value.senha == ""){
   this.insiraSenha ="Insira a senha"
+return;
+}
+if(this.cadastroForm.value.comfirmacao== ""){
+  this.senhaEfetuada ="Comfirme a senha"
+  return;
 
-let response = await fetch("https://senai-gpt-api.azurewebsites.net/login", {
-  method:"POSt",
+ 
+}
+
+let response = await fetch("https://senai-gpt-api.azurewebsites.net/users", {
+  method:"POST",
   headers: {
-    "Content-Type" : "application/json"
+    "Content-Type" : "application/json",
+    "authorization" : `Bearer ${token}`
   },
   body:JSON.stringify({
-    nome:this.cadastroForm.value.nome,
+  name:this.cadastroForm.value.nome,
+
   email:this.cadastroForm.value.email,
-  senha: this.cadastroForm.value.senha,
+
+  password: this.cadastroForm.value.senha,
+
   })
 });
 
 
-
-if(response.status ==200 && response.status <=299){
-//alert("acesso permitido")
-this.cadastrComsucesso =" cadastro efetuado com sucesso!"
-let json = await response.json();
-console.log("JSON", json)
-let meuToken = json.accessToken;
-let userId =json.user.id;
-
-localStorage.setItem ("meuToken", meuToken);
-localStorage.setItem("userId", userId);
-window.location.href = "chat";
-
+if(this.cadastroForm.value.senha == this.cadastroForm.value.confirmacao){
+  this.senhaEfetuada ="Senha comfirmada"
 } else {
 //  alert("Email ou Senha errada!")
-this.cadastroComFalha =" cadastro não efetuado"
+this.cadastroForm.value.comfirmacao=" cadastro não efetuado"
 }
 }
 }

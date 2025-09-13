@@ -78,7 +78,7 @@ if (this.loginForm.value.password == ""){
 
   
   
-if(response.status ==200 && response.status <=299){
+if(response.status >= 200 && response.status <=299){
 //alert("acesso permitido")
 this.loginComSucesso ="Login efetuado com sucesso!"
 let json = await response.json();

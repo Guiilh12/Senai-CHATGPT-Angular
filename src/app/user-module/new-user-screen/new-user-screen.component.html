@@ -3,21 +3,25 @@
         <!-- <img src="asset/img/Rectangle 1.png" alt="logo senai-gpt"> -->
      </div>
 
-     <div class="cadastro">
+     <div class="cadastro" [formGroup]="cadastroForm">
 
         <img src="imgs/Chat.png" alt="logo senai-gpt">
        <h1 class="titulo">Novo Usuário</h1>
 
-       <input class="inpt" type="nome" placeholder="nome" formControlName = "nome">
+       <input class="inpt" type="text" placeholder="nome" formControlName = "nome">
+       <span class="error-message">{{insiraNome}}</span>
 
        <input class="inpt" type="email" placeholder="email" formControlName = "email">
+       <span class="error-message">{{insiraEmail}}</span>
 
-       <input class="inpt" type="senha" placeholder="insira uma nova senha" formControlName = "senha">
+       <input class="inpt" type="password" placeholder="insira uma  senha" formControlName = "senha">
+      <span class="error-message">{{insiraSenha}}</span>
 
-       <input class="inpt" type="senha" placeholder="confimer a senha" formControlName = " nova-senha">
+       <input class="inpt" type="password" placeholder="confimer a senha" formControlName = "comfirmacao">
+      
 
        <button class="botao" (click) = "onLoginclik()">entre</button>
-
+       <span class="error-message">{{cadastroForm}}</span>
 
       
 
