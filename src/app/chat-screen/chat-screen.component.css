@@ -8,7 +8,7 @@
 
 .central-panel {
 
-    height: 90vh;
+    height: 20vh;
     width: 80vw;
 
     display: flex;
@@ -63,7 +63,6 @@ margin-bottom: 40px;
 .container {
 
     display: flex;
-
 }
 
 .top {

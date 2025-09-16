@@ -28,7 +28,7 @@ cadastroComFalha :string;
 
       nome: ["",[ Validators.required]],
       email:["", [Validators.required]],
-      senha:["", [Validators.required]],
+      senha:["", [Validators.required, Validators.minLength(6),]],
       comfirmacao:["", [Validators.required]]
     })
   

@@ -6,20 +6,12 @@
     
                 <button class="btn-new-chat">+ New chat</button>
     
-                <button class="btn-chat">
+                <button *ngFor= "let chat of chats" class="btn-chat">
                     <img src="./imgs/chat.svg" alt="ícone de chat.">
-                    AI Chat Tool Ethics
+                    <i class="fa-regular fa-message"></i>
+                    {{chat.chatTitle}}
                 </button>
-                
-                <button class="btn-chat">
-                    <img src="./imgs/chat.svg" alt="ícone de chat.">
-                    AI Chat Tool Impact Writing
-                </button>
-                
-                <button class="btn-chat">
-                    <img src="./imgs/chat.svg" alt="ícone de chat.">
-                    New chat
-                </button>
+            
 
             </div>
     
