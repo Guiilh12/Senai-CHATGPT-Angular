@@ -54,13 +54,12 @@
         </header>
         
         <main class="central-panel">
-    
+            @if (chatSelecionado == null){
             <div class="logo">
                 <img src="./imgs/Chat.png" alt="Logo do SenaiGPT.">
             </div>
     
             <div class="container">
-
                 <div class="item">
 
                     <h2>
@@ -99,17 +98,33 @@
                     <p>Limited knowledge of world andevents after 2021.</p>
 
                 </div>
-
             </div>
+            }
+
+            @if (chatSelecionado != null){
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h2>{{chatSelecionado.chatTitle}}</h2>
+                    </div>
+
+                    <div class="chat-messages">
+                        @for (msg of mensagens; track $index) {
+                            <p class="message-item" [class.chatbot] ="msg.userId == 'chatbot'">{{ msg.text}}</p>
+                        }
+                    </div>
+
+                </div>
+            }
 
             <div class="input-container-1">
 
                 <img src="./imgs/mic.svg" alt="Microphone.">
                 <img src="./imgs/img.svg" alt="Image.">
                 
-                <input placeholder="Type a message." type="text">
-                
+                <input [formControl]= "mensagemUsuario"type="text" placeholder="Type a message." >
+                <i class="fa-solid fa-microphone" ></i>
                 <img src="./imgs/send.svg" alt="Send.">
+                <i class="send-button fa-solid fa-paper-plane"(click)="enviarMensagem"></i>
 
             </div>
 
