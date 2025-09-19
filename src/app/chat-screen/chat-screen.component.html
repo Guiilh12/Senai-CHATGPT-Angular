@@ -4,7 +4,9 @@
     
             <div class="top">
     
-                <button class="btn-new-chat">+ New chat</button>
+                <button class="btn-new-chat">+ New chat
+                    <i class="fa-solid"></i>
+                </button>
     
                 <!-- <button *ngFor= "let chat of chats" class="btn-chat">
                     <img src="./imgs/chat.svg" alt="ícone de chat.">
@@ -14,7 +16,6 @@
             
                 @for (chat of chats; track $index){
                     <button class="btn-chat" (click)="onChatClick(chat)">
-                        <img src="./imgs/chat.svg" alt="ícone de chat.">
                         <i class="fa-regular fa-message"></i>
                         {{chat.chatTitle}}
                     </button>
@@ -24,7 +25,7 @@
     
             <div class="bottom">
     
-                <button class="btn-chat"> 
+                <button class="btn-chat"> <i class="fa-solid fa-clear"></i>
                     <img src="./imgs/lixo.png" alt="ícone d lixeira">
                     Clear conversations
                 </button>
@@ -118,14 +119,17 @@
 
             <div class="input-container-1">
 
-                <img src="./imgs/mic.svg" alt="Microphone.">
-                <img src="./imgs/img.svg" alt="Image.">
+             
                 
                 <input [formControl]= "mensagemUsuario"type="text" placeholder="Type a message." >
-                <i class="fa-solid fa-microphone" ></i>
-                <img src="./imgs/send.svg" alt="Send.">
-                <i class="send-button fa-solid fa-paper-plane"(click)="enviarMensagem"></i>
+                <button>
 
+               <i class="fa-solid fa-microphone" ></i>
+            </button>
+                <button>
+                    
+                <i class="fa-solid fa-paper-plane"(click)="enviarMensagem()"></i>
+            </button>
             </div>
 
         </main>
