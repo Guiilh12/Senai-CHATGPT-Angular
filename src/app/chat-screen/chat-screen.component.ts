@@ -60,16 +60,22 @@ this.getChats();
     headers:{ 
       "Authorization" : 'Bearer ' + localStorage.getItem("meuToken")
     }
-  }));
+  })) as Ichat[];
 
 
 if (response){
+  console.log("CHATS", response);
+
+let userId = localStorage.getItem("meuId");
+
+  response = response.filter(chat => chat.userId == userId)
 this.chats = response as [];
 }else{
 console.log("Erro ao buscar os chats.")
 }
 
 }
+//atualizar as mensagems na tela
 async onChatClick (chatClicado:Ichat){{
   console.log("chat Clicado", chatClicado);
 
@@ -88,7 +94,9 @@ async onChatClick (chatClicado:Ichat){{
 }
 
 }
+
 async enviarMensagem(){
+
   let novaMensagemUsuario = {
     //id
     chatId:this.chatSelecionado.id,
@@ -103,8 +111,10 @@ async enviarMensagem(){
       "Authorization" : "Bearer " + localStorage.getItem("meuToken")
     }
   }));
+  //atualizar as mensagems na tela
  await this.onChatClick(this.chatSelecionado)
 
+ // 2- - Enviar a mensagem do usuario para a IA responder.
  let respostaIAResponse = await firstValueFrom(this.http.post(
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent",{
     "contents" :[
@@ -118,7 +128,9 @@ async enviarMensagem(){
     ] 
   },{
     headers:{
+
     "Content-Type": "appllication/json",
+
     "x-goog-api-key": "AIzaSyDV2HECQZLpWJrqCKEbuq7TT5QPKKdLOdo"}
 
   })) as any;
@@ -127,14 +139,59 @@ async enviarMensagem(){
     userId: "chatbot",
     text:respostaIAResponse.candidates[0].content.parts[0].text
   }
+
 //3 - salva a respota da ia no banco de dados
 
-  let novaMensagemIAResponse= await firstValueFrom(this.http.post("https://senai-gpt-api.azurewebsites.net/messages", novaRespostaIA, {
+  let novaMensagemIAResponse= await firstValueFrom(this.http.post(
+    "https://senai-gpt-api.azurewebsites.net/messages", novaRespostaIA, {
+
     headers:{ 
+
       "content-type" : "application/json",
+
       "Authorization" : "Bearer " + localStorage.getItem("meuToken")
+
     }
+
   }));
+
+  //atualizar as mensagems na tela
+
   await this.onChatClick(this.chatSelecionado)
+
+}
+
+async novoChat(){
+const nomeChat = prompt("Digite o nome do novo chat:");
+if(!nomeChat){
+  alert("nome invalido")
+    return;
+  
+}
+    const novoChatObj = {
+      chatTitle: nomeChat,
+      userId: localStorage.getItem("meuId")
+    }
+    let novoChatresponse = await firstValueFrom (this.http.post ("https://senai-gpt-api.azurewebsites.net/chats", 
+      novoChatObj,{
+      headers:{ 
+
+        "content-type" : "application/json",
+
+        "Authorization" : 'Bearer ' + localStorage.getItem("meuToken")
+
+      }
+    })) as Ichat;
+//atualiza os chats da tela
+    await this.getChats();
+ await this.onChatClick(novoChatresponse);
+}
+deslogar(){
+  //1 alternativa
+  localStorage.removeItem("meuToken");
+  localStorage.removeItem("meuId");
+
+  localStorage.clear();
+  window.location.href = "LOgin";
 }
 }

@@ -72,6 +72,7 @@ margin-bottom: 80px;
     align-items: center;
     padding: 0px;
     height: 74vh;
+    overflow: auto;
 
 }
 
