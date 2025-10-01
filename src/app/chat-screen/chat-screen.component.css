@@ -83,6 +83,7 @@ margin-bottom: 80px;
     padding: 10px;
     color: white;
     border: none;
+     margin-top:20px ;
     border-radius: 12px;
     margin-bottom: 10px;
 
@@ -156,7 +157,7 @@ padding-right: 20px;
 
     padding: 20px;
     border: none;
-    background-color: #F7F9FB;
+    background-color: #191919;
     border-radius: 16px;
     width: 40vw;
 
@@ -244,3 +245,41 @@ p{
   color: white;
   background: #000;
 }
+ ::ng-deep body.dark-mode .left-panel{
+background-color: #000  !important; 
+
+ }
+
+ ::ng-deep body.dark-mode .btn-new-chat{
+    color: #000  !important; 
+    background-color: #fff  !important;
+    
+     }
+
+     ::ng-deep body.dark-mode .btn-chat{
+        color: #fff  !important; 
+        
+         }
+
+         ::ng-deep body.dark-mode .central-panel{
+            color: #fff  !important; 
+            background-color: #000  !important;
+            background-image: url(/public/imgs/Chatdarkmode.png) !important;            
+             }
+
+             ::ng-deep body.dark-mode .chat-messages{
+                color: #fff  !important; 
+                
+                 }
+
+                 ::ng-deep body.dark-mode .p {
+
+                    background-color: #191919  !important; 
+                    
+                     }
+                 ::ng-deep body.dark-mode .central-panel .item p {
+
+                    color: #fff  !important; 
+                    background-color: #191919 !important;
+                    
+                     }

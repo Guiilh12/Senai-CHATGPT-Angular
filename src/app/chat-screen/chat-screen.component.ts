@@ -27,9 +27,9 @@ userId:string
 export class ChatScreenComponent {
   chats: Ichat[];
   mensagemUsuario = new FormControl("");
-
 chatSelecionado: Ichat;
 mensagens :Imensagens[];
+darkMode: boolean = false
 
   constructor(private http:HttpClient,private cd: ChangeDetectorRef) { 
 
@@ -46,6 +46,11 @@ ngOnInit (){  //executa quando o angular esta pronto pra rodar.
 //Buscar dados da API
 
 this.getChats();
+let darkModeLocalStorege = localStorage.getItem("darkMode");
+if(darkModeLocalStorege = "true") {
+  this.darkMode = true;
+  document.body.classList.toggle("dark-mode", this.darkMode)
+}
 
 }
 
@@ -193,5 +198,15 @@ deslogar(){
 
   localStorage.clear();
   window.location.href = "LOgin";
+}
+
+ligarDesligarDarkMode(){
+
+  this.darkMode = !this.darkMode; //o inverso do this.darkMode
+
+  
+  document.body.classList.toggle("dark-mode", this.darkMode);
+
+  localStorage.setItem("darkMode", this.darkMode.toString());
 }
 }
